@@ -1,0 +1,6 @@
+# requirements.txt
+selenium
+pytest
+pytest-rerunfailures
+pytest-html
+pytest-metadata
