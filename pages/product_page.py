@@ -25,15 +25,14 @@ class ProductPage(BasePage):
 
     def is_item_in_cart(self):
         try:
-        # If the "Remove" button is still there, the item is still in the cart
-            self.driver.find_element(*self.REMOVE_BTN)
+            WebDriverWait(self.driver, 2).until(EC.presence_of_element_located(self.REMOVE_BTN))
             return True
         except:
             return False
 
     def goto_cart(self):
         print("🔍 Navigating to cart page...")
-        self.driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
+        self.click(self.CART_ICON)
         try:
             WebDriverWait(self.driver, 15).until(EC.url_contains("/cart.html"))
             print("Cart page loaded.")
@@ -42,8 +41,10 @@ class ProductPage(BasePage):
             print("Failed to reach cart page. Screenshot saved.")
             raise
 
+
     def click_product_title(self):
-        self.click(self.PRODUCT_TITLE)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.PRODUCT_TITLE)).click()
+
 
     def add_multiple_items(self, count):
         buttons = self.find_elements(self.ADD_TO_CART_BUTTONS)
