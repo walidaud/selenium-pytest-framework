@@ -26,7 +26,7 @@ jobs:
         pytest --html=reports/report.html --self-contained-html
 
     - name: Upload HTML Report Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: html-report
         path: reports/report.html
