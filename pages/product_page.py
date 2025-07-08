@@ -19,8 +19,9 @@ class ProductPage(BasePage):
         self.click(self.ADD_TO_CART_BTN)
 
     def remove_from_cart(self):
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.REMOVE_BTN)).click()
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.ADD_TO_CART_BTN))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.REMOVE_BTN))
+        self.driver.find_element(*self.REMOVE_BTN).click()
+
 
     def is_item_in_cart(self):
         return self.is_element_present(self.REMOVE_BTN)
