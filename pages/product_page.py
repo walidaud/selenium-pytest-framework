@@ -24,7 +24,12 @@ class ProductPage(BasePage):
 
 
     def is_item_in_cart(self):
-        return self.is_element_present(self.REMOVE_BTN)
+        try:
+        # If the "Remove" button is still there, the item is still in the cart
+            self.driver.find_element(*self.REMOVE_BTN)
+            return True
+        except:
+            return False
 
     def goto_cart(self):
         print("🔍 Navigating to cart page...")
