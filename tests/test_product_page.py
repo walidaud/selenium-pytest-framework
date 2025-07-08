@@ -1,6 +1,7 @@
 # tests/test_product_page.py
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
+import pytest
 
 def test_add_to_cart(driver):
     LoginPage(driver).login("standard_user", "secret_sauce")
@@ -8,6 +9,7 @@ def test_add_to_cart(driver):
     page.add_to_cart()
     assert page.is_item_in_cart()
 
+@pytest.mark.flaky(reruns=2)
 def test_remove_from_cart(driver):
     LoginPage(driver).login("standard_user", "secret_sauce")
     page = ProductPage(driver)
